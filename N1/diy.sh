@@ -3,20 +3,10 @@
 # Remove packages
 #rm -rf feeds/packages/net/v2ray-geodata
 
-# Git稀疏克隆，只克隆指定目录到本地
-function git_sparse_clone() {
-  branch="$1" repourl="$2" && shift 2
-  git clone --depth=1 -b $branch --single-branch --filter=blob:none --sparse $repourl
-  repodir=$(echo $repourl | awk -F '/' '{print $(NF)}')
-  cd $repodir && git sparse-checkout set $@
-  mv -f $@ ../package
-  cd .. && rm -rf $repodir
-}
 
 # Add packages
 git clone --depth=1 https://github.com/ophub/luci-app-amlogic package/amlogic
-git_sparse_clone master https://github.com/kiddin9/kwrt-packages luci-app-lucky lucky
-git_sparse_clone master https://github.com/kiddin9/kwrt-packages luci-app-linkease linkease ffmpeg-remux linkmount
+git clone  https://github.com/gdy666/luci-app-lucky.git package/lucky
 
 # 加入OpenClash核心
 #chmod -R a+x $GITHUB_WORKSPACE/preset-clash-core.sh
@@ -25,7 +15,7 @@ git_sparse_clone master https://github.com/kiddin9/kwrt-packages luci-app-linkea
 echo "
 # 插件
 CONFIG_PACKAGE_luci-app-amlogic=y
-CONFIG_PACKAGE_luci-app-linkease=y
+#CONFIG_PACKAGE_luci-app-linkease=y
 CONFIG_PACKAGE_luci-app-lucky=y
 " >> .config
 
