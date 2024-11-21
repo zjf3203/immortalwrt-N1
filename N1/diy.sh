@@ -15,8 +15,8 @@ function git_sparse_clone() {
 
 # Add packages
 git clone --depth=1 https://github.com/ophub/luci-app-amlogic package/amlogic
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-lucky lucky
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-linkease linkease ffmpeg-remux linkmount
+git_sparse_clone master https://github.com/kiddin9/kwrt-packages luci-app-lucky lucky
+git_sparse_clone master https://github.com/kiddin9/kwrt-packages luci-app-linkease linkease ffmpeg-remux linkmount
 
 # 加入OpenClash核心
 #chmod -R a+x $GITHUB_WORKSPACE/preset-clash-core.sh
